@@ -2,4 +2,5 @@
 .idea
 .pytest_cache
 requirements.txt
-*.zip
+python-exercise.zip
+report.html

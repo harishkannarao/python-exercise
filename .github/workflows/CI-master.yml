@@ -35,3 +35,9 @@ jobs:
     - name: 'CI Build Command'
       run: |
         ./create_distribution.sh
+    - name: Archive test report
+      uses: actions/upload-artifact@v1
+      if: ${{ always() }}
+      with:
+        name: test-report
+        path: report.html
