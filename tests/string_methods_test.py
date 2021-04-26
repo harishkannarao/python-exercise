@@ -1,20 +1,18 @@
-import unittest
-from assertpy import assert_that
+import pytest
 
 
-# noinspection PyMethodMayBeStatic
-class StringMethodsTest(unittest.TestCase):
+def test_upper():
+    assert 'foo'.upper() == 'FOO'
 
-    def test_upper(self):
-        assert_that('foo'.upper()).is_equal_to('FOO')
 
-    def test_isupper(self):
-        assert_that('FOO'.isupper()).is_true()
-        assert_that('foo'.isupper()).is_false()
+def test_isupper():
+    assert True == 'FOO'.isupper()
+    assert False == 'foo'.isupper()
 
-    def test_split(self):
-        s = 'hello world'
-        assert_that(s.split()).is_equal_to(['hello', 'world'])
-        # check that s.split fails when the separator is not a string
-        with self.assertRaises(TypeError):
-            s.split(2)
+
+def test_split():
+    s = 'hello world'
+    assert s.split() == ['hello', 'world']
+    with pytest.raises(TypeError) as result:
+        s.split(2)
+    assert str(result.value) == 'must be str or None, not int'
