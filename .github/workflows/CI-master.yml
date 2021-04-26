@@ -19,6 +19,9 @@ jobs:
         python-version: 3.9
     - name: Install dependencies
       run: |
+        python --version
+        pip --version
+        pip install pipenv --upgrade
         make init
     - name: Test with pytest
       run: |
