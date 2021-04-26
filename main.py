@@ -1,4 +1,8 @@
 import sys
 
-print('Number of arguments:', len(sys.argv), 'arguments.')
-print('Argument List:', str(sys.argv))
+from my_module.greeting.greetings import Greetings
+
+greetings = Greetings()
+result = greetings.greet(sys.argv)
+for value in result:
+    print(value)

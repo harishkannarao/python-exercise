@@ -6,5 +6,6 @@ make init test flake8 requirements
 
 zip python-exercise.zip \
     requirements.txt \
-    main.py \
-    tests/*
+    main.py
+
+zip -r python-exercise.zip my_module/*
