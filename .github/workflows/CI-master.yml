@@ -1,0 +1,34 @@
+name: 'CI-master'
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  master-build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: '1'
+        ref: 'master'
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Install dependencies
+      run: |
+        make init
+    - name: Test with pytest
+      run: |
+        make test
+    - name: Lint with flake8
+      run: |
+        make flake8
+    - name: Create requirements.txt
+      run: |
+        make requirements
+    - name: 'CI Build Command'
+      run: |
+        ./create_distribution.sh
