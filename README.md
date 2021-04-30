@@ -5,7 +5,6 @@ Repository to explore python programming, testing and bundling of python program
 ## Tools Required
 
 * python `3.9`
-* pipenv `2020.11.15`
 * make `3.81`
 * git `latest`
 * pycharm `latest`
