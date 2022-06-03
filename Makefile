@@ -2,6 +2,9 @@ init:
 	pip install pipenv --upgrade
 	pipenv install --dev
 
+update:
+	pipenv update
+
 test:
 	pipenv run python -m pytest --html=report.html --self-contained-html
 

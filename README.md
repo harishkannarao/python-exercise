@@ -14,6 +14,10 @@ Repository to explore python programming, testing and bundling of python program
 ### Install dependencies
 
     make init
+
+### Update packages to latest
+
+    make update
     
 ### Run tests
 
