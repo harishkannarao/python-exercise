@@ -12,4 +12,7 @@ flake8:
 	pipenv run flake8 --ignore=E501 --exclude=.venv,.git # ignore max line length
 
 requirements:
-	pipenv lock -r > requirements.txt
+	pipenv requirements > requirements.txt
+
+requirements_with_dev:
+	pipenv requirements --dev > requirements.txt

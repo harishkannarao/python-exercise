@@ -29,7 +29,15 @@ Repository to explore python programming, testing and bundling of python program
     
 ### Create requirements.txt
 
-    make requirements
+    make requirements 
+
+### Create requirements.txt including dev packages
+
+    make requirements_with_dev
+
+### Install dependencies from requirements.txt during runtime
+
+    pip install -r requirements.txt
     
 ### Create distribution
 
