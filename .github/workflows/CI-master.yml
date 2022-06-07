@@ -17,6 +17,9 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.9
+    - name: Clean files
+      run: |
+        make clean
     - name: Install dependencies
       run: |
         python --version
@@ -32,9 +35,9 @@ jobs:
     - name: Create requirements.txt
       run: |
         make requirements
-    - name: 'CI Build Command'
+    - name: Create distribution
       run: |
-        ./create_distribution.sh
+        make create_distribution
     - name: Archive test report
       uses: actions/upload-artifact@v1
       if: ${{ always() }}
