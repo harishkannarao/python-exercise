@@ -41,4 +41,4 @@ Repository to explore python programming, testing and bundling of python program
     
 ### Create distribution
 
-    ./create_distribution.sh
+    make clean init requirements create_distribution

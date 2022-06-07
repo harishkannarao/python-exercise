@@ -2,6 +2,9 @@ init:
 	pip install pipenv --upgrade
 	pipenv install --dev
 
+clean:
+	pipenv run python clean.py
+
 update:
 	pipenv update
 
@@ -16,3 +19,6 @@ requirements:
 
 requirements_with_dev:
 	pipenv requirements --dev > requirements.txt
+
+create_distribution:
+	pipenv run python create_distribution.py
