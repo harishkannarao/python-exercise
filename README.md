@@ -26,6 +26,10 @@ Repository to explore python programming, testing and bundling of python program
 ### Verify flake8
 
     make flake8
+
+### Run full build
+
+    make clean init test flake8
     
 ### Create requirements.txt
 
