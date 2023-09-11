@@ -29,7 +29,7 @@ Repository to explore python programming, testing and bundling of python program
 
 ### Run full build
 
-    make clean init test flake8
+    make run_all
     
 ### Create requirements.txt
 

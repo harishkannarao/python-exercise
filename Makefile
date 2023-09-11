@@ -14,6 +14,9 @@ test:
 flake8:
 	pipenv run flake8 --ignore=E501 --exclude=.venv,.git # ignore max line length
 
+run_all:
+	make clean init test flake8
+
 requirements:
 	pipenv requirements > requirements.txt
 
