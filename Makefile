@@ -1,3 +1,5 @@
+.DEFAULT_GOAL := run_all
+
 init:
 	pip install pipenv --upgrade
 	pipenv install --dev
