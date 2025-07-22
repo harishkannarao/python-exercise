@@ -4,6 +4,10 @@ init:
 	pip install pipenv --upgrade
 	pipenv install --dev
 
+init_ci:
+	pip install pipenv --upgrade
+	pipenv install --dev --deploy
+
 clean:
 	pipenv run python clean.py
 

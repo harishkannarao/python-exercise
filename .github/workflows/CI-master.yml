@@ -24,7 +24,7 @@ jobs:
         python --version
         pip --version
         pip install pipenv --upgrade
-        make init
+        make init_ci
     - name: Test with pytest
       run: |
         make test
