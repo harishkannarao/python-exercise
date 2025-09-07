@@ -1,33 +1,32 @@
 .DEFAULT_GOAL := run_all
 
 init:
-	pip install pipenv --upgrade
-	pipenv install --dev
+	uv sync --locked
 
 init_ci:
-	pip install pipenv --upgrade
-	pipenv install --dev --deploy
+	pip install uv --upgrade
+	uv sync --locked
 
 clean:
-	pipenv run python clean.py
+	uv run python clean.py
 
 update:
-	pipenv update
+	uv sync --upgrade
 
 test:
-	pipenv run python -m pytest --html=report.html --self-contained-html
+	uv run python -m pytest --html=report.html --self-contained-html
 
 flake8:
-	pipenv run flake8 --ignore=E501 --exclude=.venv,.git # ignore max line length
+	uv run flake8 --ignore=E501 --exclude=.venv,.git # ignore max line length
 
 run_all:
 	make clean init test flake8
 
 requirements:
-	pipenv requirements > requirements.txt
+	uv export --no-dev --format requirements-txt > requirements.txt
 
 requirements_with_dev:
-	pipenv requirements --dev > requirements.txt
+	uv export --all-groups --format requirements-txt > requirements.txt
 
 create_distribution:
-	pipenv run python create_distribution.py
+	uv run python create_distribution.py

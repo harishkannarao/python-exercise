@@ -4,7 +4,7 @@ Repository to explore python programming, testing and bundling of python program
 
 ## Tools Required
 
-* python `3.11.4`
+* python `>=3.11`
 * make `3.81`
 * git `latest`
 * pycharm `latest`
@@ -36,6 +36,10 @@ To run `pytest` tests in `PyCharm`, make the project root directory as test root
 ### Verify flake8
 
     make flake8
+
+### Run main.py
+
+    uv run main.py
 
 ### Run full build
 

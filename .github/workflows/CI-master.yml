@@ -18,12 +18,12 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.11.4
+        python-version: 3.11
     - name: Install dependencies
       run: |
         python --version
         pip --version
-        pip install pipenv --upgrade
+        make --version
         make init_ci
     - name: Test with pytest
       run: |
