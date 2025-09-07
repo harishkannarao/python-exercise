@@ -27,7 +27,7 @@ To run `pytest` tests in `PyCharm`, make the project root directory as test root
 
 ### Update packages to latest
 
-    make update
+    make upgrade
     
 ### Run tests
 

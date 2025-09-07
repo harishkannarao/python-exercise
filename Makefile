@@ -10,7 +10,7 @@ init_ci:
 clean:
 	uv run python clean.py
 
-update:
+upgrade:
 	uv sync --upgrade
 
 test:
