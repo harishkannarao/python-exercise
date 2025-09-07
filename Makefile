@@ -16,11 +16,15 @@ upgrade:
 test:
 	uv run python -m pytest --html=report.html --self-contained-html
 
+ruff:
+	uv run ruff check
+	uv run ruff format
+
 flake8:
 	uv run flake8 --ignore=E501 --exclude=.venv,.git # ignore max line length
 
 run_all:
-	make clean init test flake8
+	make clean init test ruff flake8
 
 requirements:
 	uv export --no-dev --format requirements-txt > requirements.txt

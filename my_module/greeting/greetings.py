@@ -1,5 +1,4 @@
 class Greetings:
-
     @staticmethod
     def greet(input_args):
         result = []
