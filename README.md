@@ -13,8 +13,9 @@ Repository to explore python programming, testing and bundling of python program
 
 Setup `python` interpreter to virtual env as:
 
-    Settings -> Project: <Project Name> -> Python Interpreter -> Add Interpreter -> Add Local Interpreter -> Select Existing -> Python -> <Project Root>/.venv/bin/python
+    Settings -> Python -> Interpreter -> Add Interpreter -> Add Local Interpreter -> Select Existing -> Python -> <Project Root>/.venv
 
+**Note**: New versions of PyCharm doesn't need to make the below change and the tests run normall as is.
 To run `pytest` tests in `PyCharm`, make the project root directory as test root directory by
 
     Right Click Project Root directory -> Mark Directory As -> Test Sources Root
