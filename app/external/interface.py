@@ -11,7 +11,7 @@ def get_response_from_endpoint(url: str) -> str:
 
 async def async_get_response_from_endpoint(url: str) -> str:
     response: Response = requests.get(url)
-    await asyncio.sleep(2)
+    await asyncio.sleep(3)
     return response.text
 
 
