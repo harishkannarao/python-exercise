@@ -19,7 +19,7 @@ def main():
     with ZipFile("python-exercise.zip", "w", ZIP_DEFLATED) as zipObj:
         zip_file("main.py", zipObj)
         zip_file("requirements.txt", zipObj)
-        zip_files_in_dir("my_module", zipObj)
+        zip_files_in_dir("app", zipObj)
 
 
 if __name__ == "__main__":

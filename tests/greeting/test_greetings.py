@@ -2,7 +2,7 @@ import asyncio
 
 import pytest
 
-from my_module.greeting.greetings import Greetings
+from app.greeting.greetings import Greetings
 
 
 @pytest.fixture
