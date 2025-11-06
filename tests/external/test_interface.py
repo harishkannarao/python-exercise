@@ -2,12 +2,12 @@ import asyncio
 from unittest.mock import MagicMock, AsyncMock
 
 from assertpy import assert_that
+
+from app.external import interface
 from pytest_mock import MockerFixture
 
-from app.service import process
 
-
-def test_get_response_integration(mocker: MockerFixture) -> None:
+def test_get_response_from_endpoint(mocker: MockerFixture) -> None:
     mock_get_response_from_endpoint: MagicMock = MagicMock()
     mock_response: MagicMock = MagicMock()
     mocker.patch(
@@ -20,7 +20,7 @@ def test_get_response_integration(mocker: MockerFixture) -> None:
     mock_response.text = expected
 
     input_url: str = "http://www.example.com"
-    result: str = process.get_response(input_url)
+    result: str = interface.get_response_from_endpoint(input_url)
 
     assert_that(result).is_equal_to(expected)
 
@@ -29,7 +29,7 @@ def test_get_response_integration(mocker: MockerFixture) -> None:
     assert mock_get_response_from_endpoint.call_args.args == (input_url,)
 
 
-def test_async_get_response_integration(mocker: MockerFixture) -> None:
+def test_async_get_response_from_endpoint(mocker: MockerFixture) -> None:
     mock_get_response_from_endpoint: MagicMock = MagicMock()
     mock_response: MagicMock = MagicMock()
     mocker.patch(
@@ -46,7 +46,7 @@ def test_async_get_response_integration(mocker: MockerFixture) -> None:
     mock_response.text = expected
 
     input_url: str = "http://www.example.com"
-    result: str = asyncio.run(process.async_get_response(input_url))
+    result: str = asyncio.run(interface.async_get_response_from_endpoint(input_url))
 
     assert_that(result).is_equal_to(expected)
 
