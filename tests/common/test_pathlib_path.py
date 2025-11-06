@@ -1,8 +1,6 @@
-from dataclasses import dataclass
 from pathlib import Path
-from types import MappingProxyType
 
-import pytest
+from pytest_mock import MockerFixture
 
 
 def create_path(output_dir):
@@ -10,36 +8,23 @@ def create_path(output_dir):
     return
 
 
-@dataclass(frozen=True)
-class ArgsKwArgsPair:
-    args: tuple
-    kwargs: MappingProxyType
-
-
-@dataclass(frozen=True)
-class MkdirCall:
-    path: str
-    argsPair: ArgsKwArgsPair
-
-
-@pytest.fixture
-def path_mkdir_fixture(monkeypatch):
-    mkdir_calls: list[MkdirCall] = []
+def test_path_mocking(mocker: MockerFixture):
+    instances: list[str] = []
+    args_list: list[tuple] = []
+    kwargs_list: list[dict] = []
 
     def mock_mkdir(self: Path, *args, **kwargs):
-        mkdir_calls.append(
-            MkdirCall(str(self), ArgsKwArgsPair(tuple(args), MappingProxyType(kwargs)))
-        )
+        instances.append(str(self))
+        args_list.append(args)
+        kwargs_list.append(kwargs)
         return
 
-    monkeypatch.setattr(Path, "mkdir", mock_mkdir)
-    yield mkdir_calls
+    mocker.patch.object(Path, "mkdir", mock_mkdir)
 
-
-def test_path_mocking(path_mkdir_fixture: list[MkdirCall]):
     create_path("/abc")
-    assert len(path_mkdir_fixture) == 1
-    assert path_mkdir_fixture[0].path == "/abc"
-    assert len(path_mkdir_fixture[0].argsPair.args) == 0
-    assert path_mkdir_fixture[0].argsPair.kwargs.get("parents") is True
-    assert path_mkdir_fixture[0].argsPair.kwargs.get("exist_ok") is True
+    assert len(instances) == 1
+    assert len(args_list) == 1
+    assert len(kwargs_list) == 1
+    assert instances[0] == "/abc"
+    assert args_list[0] == ()
+    assert kwargs_list[0] == {"parents": True, "exist_ok": True}
