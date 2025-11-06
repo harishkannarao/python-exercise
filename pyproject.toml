@@ -11,6 +11,7 @@ dependencies = [
 dev = [
     "flake8",
     "pytest",
+    "pytest-mock",
     "pytest-html",
     "assertpy",
     "ruff",
