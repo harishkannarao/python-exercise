@@ -17,3 +17,4 @@ async def async_get_response_from_endpoint(url: str) -> str:
 
 if __name__ == "__main__":
     print(get_response_from_endpoint("http://www.example.com"))
+    print(asyncio.run(async_get_response_from_endpoint("http://www.example.com")))
