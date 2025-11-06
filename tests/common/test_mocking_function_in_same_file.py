@@ -13,6 +13,7 @@ def test_add_real() -> None:
     result: int = Test.add(2, 2)
     assert result == 4
 
+
 def test_add_mocked_with_mocker(mocker: MockerFixture) -> None:
     mock_add: MagicMock = MagicMock()
     mock_add.side_effect = [3, 5]
