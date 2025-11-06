@@ -3,17 +3,22 @@ from pytest import MonkeyPatch
 from assertpy import assert_that
 from pytest_mock import MockerFixture
 import app.service.process
+import app.external.interface
 from app.service.process import get_response
 
 
 def test_get_response_using_monkey_patch(monkeypatch: MonkeyPatch) -> None:
     mock_get_response_from_endpoint: MagicMock = MagicMock()
-    monkeypatch.setattr(app.service.process, 'get_response_from_endpoint', mock_get_response_from_endpoint)
+    monkeypatch.setattr(
+        app.service.process,
+        "get_response_from_endpoint",
+        mock_get_response_from_endpoint,
+    )
 
-    expected: str = 'test-response'
+    expected: str = "test-response"
     mock_get_response_from_endpoint.return_value = expected
 
-    input_url: str = 'http://www.example.com'
+    input_url: str = "http://www.example.com"
     result: str = get_response(input_url)
 
     assert_that(result).is_equal_to(expected)
@@ -25,12 +30,15 @@ def test_get_response_using_monkey_patch(monkeypatch: MonkeyPatch) -> None:
 
 def test_get_response_mocker_fixture(mocker: MockerFixture) -> None:
     mock_get_response_from_endpoint: MagicMock = MagicMock()
-    mocker.patch('app.service.process.get_response_from_endpoint', mock_get_response_from_endpoint)
+    mocker.patch(
+        "app.service.process.get_response_from_endpoint",
+        mock_get_response_from_endpoint,
+    )
 
-    expected: str = 'test-response'
+    expected: str = "test-response"
     mock_get_response_from_endpoint.return_value = expected
 
-    input_url: str = 'http://www.example.com'
+    input_url: str = "http://www.example.com"
     result: str = get_response(input_url)
 
     assert_that(result).is_equal_to(expected)
