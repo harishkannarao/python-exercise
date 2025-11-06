@@ -9,7 +9,7 @@ from app.service.process import get_response
 def test_get_response_unit(mocker: MockerFixture) -> None:
     mock_get_response_from_endpoint: MagicMock = MagicMock()
     mocker.patch(
-        "app.service.process.get_response_from_endpoint",
+        "app.service.process.interface.get_response_from_endpoint",
         mock_get_response_from_endpoint,
     )
 

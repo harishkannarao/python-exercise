@@ -1,8 +1,8 @@
-from app.external.interface import get_response_from_endpoint
+from app.external import interface
 
 
 def get_response(url: str) -> str:
-    return get_response_from_endpoint(url)
+    return interface.get_response_from_endpoint(url)
 
 
 if __name__ == "__main__":
