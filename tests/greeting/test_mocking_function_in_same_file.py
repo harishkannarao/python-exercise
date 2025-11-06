@@ -26,5 +26,5 @@ def test_add_mocked(monkeypatch: MonkeyPatch) -> None:
     assert len(calls_made) == 2
     assert calls_made[0].args[0] == 2
     assert calls_made[0].args[1] == 3
-    assert calls_made[1].kwargs['a'] == 3
-    assert calls_made[1].kwargs['b'] == 4
+    assert calls_made[1].kwargs["a"] == 3
+    assert calls_made[1].kwargs["b"] == 4

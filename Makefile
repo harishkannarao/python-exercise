@@ -3,6 +3,9 @@
 init:
 	uv sync --locked
 
+init_dependencies:
+	uv sync
+
 init_ci:
 	pip install uv --upgrade
 	uv sync --locked
