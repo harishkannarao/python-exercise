@@ -28,6 +28,9 @@ jobs:
     - name: Test with pytest
       run: |
         make test
+    - name: Integration Test with pytest
+      run: |
+        make integration_test
     - name: Lint with flake8
       run: |
         make flake8
