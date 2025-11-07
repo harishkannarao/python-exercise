@@ -10,49 +10,49 @@ from app.service import process
 
 
 @dataclass(frozen=True)
-class MockHolder:
+class Setup:
     mock_get: MagicMock
     mock_sleep: AsyncMock
 
 
 @pytest.fixture
-def mock_holder(mocker: MockerFixture):
+def setup(mocker: MockerFixture):
     mock_get: MagicMock = mocker.patch("app.external.interface.requests.get")
     mock_sleep: AsyncMock = mocker.patch("app.external.interface.asyncio.sleep")
-    return MockHolder(mock_get=mock_get, mock_sleep=mock_sleep)
+    return Setup(mock_get=mock_get, mock_sleep=mock_sleep)
 
 
-def test_get_response_integration(mock_holder: MockHolder) -> None:
+def test_get_response_integration(setup: Setup) -> None:
     expected: str = "test-response"
     mock_response: MagicMock = MagicMock()
     mock_response.text = expected
-    mock_holder.mock_get.return_value = mock_response
+    setup.mock_get.return_value = mock_response
 
     input_url: str = "http://www.example.com"
     result: str = process.get_response(input_url)
 
     assert_that(result).is_equal_to(expected)
 
-    assert len(mock_holder.mock_get.call_args_list) == 1
+    assert len(setup.mock_get.call_args_list) == 1
 
-    assert mock_holder.mock_get.call_args.args == (input_url,)
+    assert setup.mock_get.call_args.args == (input_url,)
 
 
-def test_async_get_response_integration(mock_holder: MockHolder) -> None:
+def test_async_get_response_integration(setup: Setup) -> None:
     expected: str = "test-response"
     mock_response: MagicMock = MagicMock()
     mock_response.text = expected
 
-    mock_holder.mock_get.return_value = mock_response
+    setup.mock_get.return_value = mock_response
 
     input_url: str = "http://www.example.com"
     result: str = asyncio.run(process.async_get_response(input_url))
 
     assert_that(result).is_equal_to(expected)
 
-    assert len(mock_holder.mock_get.call_args_list) == 1
+    assert len(setup.mock_get.call_args_list) == 1
 
-    assert mock_holder.mock_get.call_args.args == (input_url,)
+    assert setup.mock_get.call_args.args == (input_url,)
 
-    assert len(mock_holder.mock_sleep.call_args_list) == 1
-    assert mock_holder.mock_sleep.call_args.args == (3,)
+    assert len(setup.mock_sleep.call_args_list) == 1
+    assert setup.mock_sleep.call_args.args == (3,)
