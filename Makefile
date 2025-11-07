@@ -17,7 +17,10 @@ upgrade:
 	uv sync --upgrade
 
 test:
-	uv run python -m pytest --html=report.html --self-contained-html
+	uv run pytest tests --html=test_report.html --self-contained-html
+
+integration_test:
+	uv run pytest integration_tests --html=integration_test_report.html --self-contained-html
 
 ruff:
 	uv run ruff check
@@ -27,7 +30,7 @@ flake8:
 	uv run flake8 --ignore=E501 --exclude=.venv,.git # ignore max line length
 
 run_all:
-	make clean init test ruff flake8
+	make clean init test integration_test ruff flake8
 
 requirements:
 	uv export --no-dev --format requirements-txt > requirements.txt

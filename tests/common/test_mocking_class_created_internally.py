@@ -10,7 +10,9 @@ def create_path(output_dir):
 
 
 def test_path_mocking(mocker: MockerFixture):
-    mock_mkdir: MagicMock = mocker.patch.object(Path, "mkdir", autospec=True)
+    mock_mkdir: MagicMock = mocker.patch.object(
+        Path, "mkdir", autospec=True, spec_set=True
+    )
 
     create_path("/abc")
 

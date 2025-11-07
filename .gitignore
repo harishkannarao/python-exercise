@@ -3,4 +3,5 @@
 .pytest_cache
 requirements.txt
 python-exercise.zip
-report.html
+test_report.html
+integration_test_report.html
