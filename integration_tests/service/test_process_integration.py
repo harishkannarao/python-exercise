@@ -16,7 +16,7 @@ class Setup:
 
 
 @pytest.fixture
-def setup(mocker: MockerFixture):
+def setup(mocker: MockerFixture) -> Setup:
     mock_get: MagicMock = mocker.patch("app.external.interface.requests.get")
     mock_sleep: AsyncMock = mocker.patch("app.external.interface.asyncio.sleep")
     return Setup(mock_get=mock_get, mock_sleep=mock_sleep)
