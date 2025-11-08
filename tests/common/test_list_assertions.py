@@ -27,6 +27,6 @@ def test_list_assert_on_objects():
     )
     list_of_persons: tuple[Person, ...] = (person1, person2)
 
-    actual1 = list(filter(lambda person: person.id == 1, list_of_persons))
+    filtered_persons = list(filter(lambda person: person.id == 1, list_of_persons))
 
-    assert_that(actual1).contains_only(person1)
+    assert_that(filtered_persons).contains_only(person1)
