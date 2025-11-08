@@ -24,7 +24,8 @@ def test_list_assert_on_objects():
         meta_info=MappingProxyType({"graduation": "university"}),
     )
     person2: Person = Person(name="Bar", id=2)
-    list_of_persons: tuple[Person, ...] = (person1, person2)
+    person3: Person = dataclasses.replace(person1, id=3, skills=frozenset(), alias=())
+    list_of_persons: tuple[Person, ...] = (person1, person2, person3)
 
     filtered_persons = tuple(filter(lambda person: person.id == 1, list_of_persons))
 
