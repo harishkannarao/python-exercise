@@ -30,4 +30,4 @@ def test_list_assert_on_objects():
     filtered_persons = tuple(filter(lambda person: person.id == 1, list_of_persons))
 
     (assert_that(filtered_persons)
-     .contains_only(person2))
+     .contains_only(person1))
