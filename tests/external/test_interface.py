@@ -1,12 +1,11 @@
-import asyncio
 from dataclasses import dataclass
 from unittest.mock import MagicMock, AsyncMock
 
 import pytest
 from assertpy import assert_that
+from pytest_mock import MockerFixture
 
 from app.external import interface
-from pytest_mock import MockerFixture
 
 
 @dataclass(frozen=True)
@@ -38,7 +37,8 @@ def test_get_response_from_endpoint(setup: Setup) -> None:
     assert setup.mock_get.call_args.args == (input_url,)
 
 
-def test_async_get_response_from_endpoint(setup: Setup) -> None:
+@pytest.mark.asyncio
+async def test_async_get_response_from_endpoint(setup: Setup) -> None:
     expected: str = "test-response"
     mock_response: MagicMock = MagicMock()
     mock_response.text = expected
@@ -46,7 +46,7 @@ def test_async_get_response_from_endpoint(setup: Setup) -> None:
     setup.mock_get.return_value = mock_response
 
     input_url: str = "http://www.example.com"
-    result: str = asyncio.run(interface.async_get_response_from_endpoint(input_url))
+    result: str = await interface.async_get_response_from_endpoint(input_url)
 
     assert_that(result).is_equal_to(expected)
 

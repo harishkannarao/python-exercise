@@ -1,4 +1,3 @@
-import asyncio
 from dataclasses import dataclass
 from unittest.mock import MagicMock, AsyncMock
 
@@ -38,7 +37,8 @@ def test_get_response_integration(setup: Setup) -> None:
     assert setup.mock_get.call_args.args == (input_url,)
 
 
-def test_async_get_response_integration(setup: Setup) -> None:
+@pytest.mark.asyncio
+async def test_async_get_response_integration(setup: Setup) -> None:
     expected: str = "test-response"
     mock_response: MagicMock = MagicMock()
     mock_response.text = expected
@@ -46,7 +46,7 @@ def test_async_get_response_integration(setup: Setup) -> None:
     setup.mock_get.return_value = mock_response
 
     input_url: str = "http://www.example.com"
-    result: str = asyncio.run(process.async_get_response(input_url))
+    result: str = await process.async_get_response(input_url)
 
     assert_that(result).is_equal_to(expected)
 

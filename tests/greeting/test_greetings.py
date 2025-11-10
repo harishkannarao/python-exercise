@@ -1,4 +1,3 @@
-import asyncio
 from dataclasses import dataclass
 
 import pytest
@@ -23,8 +22,9 @@ def test_greetings(setup: Setup):
     assert result[1] == "Hello, value2"
 
 
-def test_async_greetings(setup: Setup):
+@pytest.mark.asyncio
+async def test_async_greetings(setup: Setup):
     input_value = ["value1", "value2"]
-    result: list[str] = asyncio.run(setup.under_test.async_greet(input_value))
+    result: list[str] = await setup.under_test.async_greet(input_value)
     assert result[0] == "Hello, value1"
     assert result[1] == "Hello, value2"
