@@ -16,4 +16,5 @@ dev = [
     "pytest-asyncio",
     "assertpy",
     "ruff",
+    "retrying",
 ]
