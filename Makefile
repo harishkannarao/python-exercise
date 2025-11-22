@@ -30,7 +30,7 @@ flake8:
 	uv run flake8 --ignore=E501 --exclude=.venv,.git # ignore max line length
 
 run_all:
-	make clean init test integration_test ruff flake8
+	make init clean test integration_test ruff flake8
 
 requirements:
 	uv export --no-dev --format requirements-txt > requirements.txt
