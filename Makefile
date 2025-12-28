@@ -23,7 +23,7 @@ integration_test:
 	uv run pytest integration_tests --html=integration_test_report.html --self-contained-html
 
 ruff:
-	uv run ruff check
+	uv run ruff check --fix
 	uv run ruff format
 
 flake8:
